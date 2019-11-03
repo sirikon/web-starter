@@ -4,7 +4,7 @@
   "description": "Web Starter using Node, Typescript, Koa, Pug and Docker",
   "scripts": {
     "app": "NODE_ENV=development ts-node main.ts",
-    "style": "dart-sass --watch ./src/web/style/main.scss:./src/web/static/style.css",
+    "style": "dart-sass --watch ./src/web/style/main.scss:./src/web/static/style/style.css",
     "start": "concurrently -c cyan,magenta \"npm:app\" \"npm:style\"",
     "favicons": "./favicons/gen.sh",
     "build": "tsc -p .",
