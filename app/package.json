@@ -6,6 +6,7 @@
     "app": "NODE_ENV=development ts-node main.ts",
     "style": "dart-sass --watch ./src/web/style/main.scss:./src/web/static/style.css",
     "start": "concurrently -c cyan,magenta \"npm:app\" \"npm:style\"",
+    "favicons": "./favicons/gen.sh",
     "build": "tsc -p .",
     "lint": "tslint -p .",
     "test": "echo \"No test specified\" && exit 0"
@@ -35,6 +36,7 @@
     "@types/node": "^12.11.1",
     "concurrently": "^5.0.0",
     "dart-sass": "^1.23.3",
+    "favicons": "^5.4.1",
     "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4"

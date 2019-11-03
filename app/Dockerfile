@@ -1,3 +1,12 @@
+FROM node:10.16-alpine AS build-favicons
+RUN apk add --update --no-cache bash
+WORKDIR /app
+COPY ./package.json .
+COPY ./package-lock.json .
+RUN npm install
+COPY ./favicons ./favicons
+RUN npm run favicons
+
 FROM node:10.16-alpine AS build-app
 WORKDIR /app
 COPY ./package.json .
@@ -14,5 +23,6 @@ RUN npm install --production
 COPY --from=build-app /app/out .
 COPY --from=build-app /app/src/web/static ./src/web/static
 COPY --from=build-app /app/src/web/views ./src/web/views
+COPY --from=build-favicons /app/src/web/favicons ./src/web/favicons
 ENV PORT=80
 CMD node main.js
