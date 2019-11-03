@@ -1,0 +1,42 @@
+{
+  "name": "web-starter",
+  "version": "1.0.0",
+  "description": "Web Starter using Node, Typescript, Koa, Pug and Docker",
+  "scripts": {
+    "app": "ts-node main.ts",
+    "style": "dart-sass --watch ./src/web/style/main.scss:./src/web/static/style.css",
+    "start": "concurrently -c cyan,magenta \"npm:app\" \"npm:style\"",
+    "build": "tsc -p .",
+    "lint": "tslint -p .",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirikon/web-starter.git"
+  },
+  "author": "Carlos Fdez. Llamas <hello@sirikon.me>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sirikon/web-starter/issues"
+  },
+  "homepage": "https://github.com/sirikon/web-starter#readme",
+  "dependencies": {
+    "koa": "^2.10.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.1",
+    "pug": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.51",
+    "@types/koa-router": "^7.0.42",
+    "@types/koa-static": "^4.0.1",
+    "@types/koa-views": "^2.0.3",
+    "@types/node": "^12.11.1",
+    "concurrently": "^5.0.0",
+    "dart-sass": "^1.23.3",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.4"
+  }
+}

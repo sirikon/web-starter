@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+
+  app:
+    image: web-starter
+    restart: always
+    build:
+      context: ../app/
+    environment:
+      NODE_ENV: development
+    volumes:
+     - ../app/src/web/views:/app/src/web/views
+     - ../app/src/web/static:/app/src/web/static
+    ports:
+      - 127.0.0.1:8080:80
