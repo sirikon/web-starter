@@ -7,7 +7,7 @@ RUN npm install
 COPY ./favicons ./favicons
 RUN npm run favicons
 COPY ./ .
-RUN npm run lint && npm run build
+RUN npm run lint && npm run build && npm run build:style
 
 FROM node:10.16-alpine
 WORKDIR /app
