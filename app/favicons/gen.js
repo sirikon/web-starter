@@ -3,15 +3,19 @@ const pathUtils = require('path');
 
 const favicons = require('favicons');
 
+const packageJsonPath = pathUtils.join(__dirname, '..', 'package.json');
+const packageContent = fs.readFileSync(packageJsonPath, { encoding: 'utf8' });
+const package = JSON.parse(packageContent);
+
 const faviconsBaseFolder = pathUtils.join(__dirname, '../src/web/favicons/');
 
 const source = pathUtils.join(__dirname, 'icon.png');
 const config = {
 	path: '/',
-	appName: 'Web Starter',
-	appDescription: 'You should change this',
-	developerName: 'Carlos Fdez. Llamas',
-	developerURL: 'https://sirikon.me',
+	appName: package.displayName,
+	appDescription: package.description,
+	developerName: package.author.name,
+	developerURL: package.author.url,
 	dir: 'auto',
 	lang: 'en-US',
 	background: '#FFFFFF',
