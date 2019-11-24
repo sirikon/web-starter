@@ -12,16 +12,8 @@
     "lint": "tslint -p .",
     "test": "echo \"No test specified\" && exit 0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sirikon/web-starter.git"
-  },
   "author": "Carlos Fdez. Llamas <hello@sirikon.me>",
   "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/sirikon/web-starter/issues"
-  },
-  "homepage": "https://github.com/sirikon/web-starter#readme",
   "dependencies": {
     "koa": "^2.10.0",
     "koa-router": "^7.4.0",

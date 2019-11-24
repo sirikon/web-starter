@@ -3,7 +3,7 @@ version: '2'
 services:
 
   app:
-    image: web-starter
+    image: ${PROJECT_NAME}
     restart: always
     build:
       context: ../app/

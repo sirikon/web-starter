@@ -3,4 +3,4 @@
 set -e
 cd $(dirname ${BASH_SOURCE[0]})/..
 
-./scripts/devenv.sh build app
+./scripts/compose.sh build app

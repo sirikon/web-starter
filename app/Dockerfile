@@ -1,4 +1,6 @@
-FROM node:10.16-alpine AS build-app
+ARG node_version=12.13
+
+FROM node:${node_version}-alpine AS build-app
 RUN apk add --update --no-cache bash
 WORKDIR /app
 COPY ./package.json .
@@ -9,7 +11,7 @@ RUN npm run favicons
 COPY ./ .
 RUN npm run lint && npm run build && npm run build:style
 
-FROM node:10.16-alpine
+FROM node:${node_version}-alpine
 WORKDIR /app
 COPY --from=build-app /app/package.json .
 COPY --from=build-app /app/package-lock.json .
