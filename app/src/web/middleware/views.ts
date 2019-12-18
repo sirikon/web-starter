@@ -7,7 +7,7 @@ import koaViews from 'koa-views';
 const faviconsHeaders = getFaviconsHeaders();
 
 export default function views(app: Koa) {
-	app.use(koaViews('./src/web/views', {
+	app.use(koaViews('./resources/web/views', {
 		extension: 'pug',
 		map: {
 			pug: 'pug',

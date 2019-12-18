@@ -1,3 +1,2 @@
 /node_modules
-/src/web/static/style
-/src/web/favicons
+/resources/web/generated

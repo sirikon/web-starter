@@ -7,7 +7,7 @@ const packageJsonPath = pathUtils.join(__dirname, '..', 'package.json');
 const packageContent = fs.readFileSync(packageJsonPath, { encoding: 'utf8' });
 const package = JSON.parse(packageContent);
 
-const faviconsBaseFolder = pathUtils.join(__dirname, '../src/web/favicons/');
+const faviconsBaseFolder = pathUtils.join(__dirname, '../resources/web/generated/favicons/');
 
 const source = pathUtils.join(__dirname, 'icon.png');
 const config = {
