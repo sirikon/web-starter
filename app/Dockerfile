@@ -40,5 +40,5 @@ COPY --from=build-app /app/out .
 COPY --from=build-app /app/resources ./resources
 
 ## Run
-ENV PORT=80
+ENV WEB_PORT=80
 CMD node src/main.js

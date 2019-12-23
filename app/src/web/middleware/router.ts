@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import KoaRouter from 'koa-router';
 
-import homeController from '../controllers/homeController';
+import homeController from 'web/controllers/homeController';
 
 export default function router(app: Koa) {
   const r = new KoaRouter();

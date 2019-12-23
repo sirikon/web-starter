@@ -9,10 +9,11 @@
   },
   "version": "1.0.0",
   "scripts": {
-    "app": "NODE_ENV=development ts-node src/main.ts",
+    "app": "NODE_ENV=development ts-node -r tsconfig-paths/register src/main.ts",
+    "migrator": "ts-node -r tsconfig-paths/register src/migrator.ts",
     "style": "npm run build:style -- --watch",
     "build:style": "dart-sass ./src/web/style/main.scss:./resources/web/generated/style/style.css",
-    "start": "concurrently -c cyan,magenta \"npm:app\" \"npm:style\"",
+    "start": "concurrently -c cyan,magenta,yellow -n app,style,migrator \"npm run -s app\" \"npm run -s style\" \"npm run -s migrator\"",
     "favicons": "./favicons/gen.sh",
     "build": "tsc -p .",
     "lint": "tslint -p .",
@@ -20,10 +21,12 @@
   },
   "license": "GPL-3.0",
   "dependencies": {
+    "gratin": "^0.1.2",
     "koa": "^2.10.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa-views": "^6.2.1",
+    "pg": "^7.15.1",
     "pug": "^2.0.4"
   },
   "devDependencies": {
@@ -32,10 +35,12 @@
     "@types/koa-static": "^4.0.1",
     "@types/koa-views": "^2.0.3",
     "@types/node": "^12.11.1",
+    "@types/pg": "^7.11.2",
     "concurrently": "^5.0.0",
     "dart-sass": "^1.23.3",
     "favicons": "^5.4.1",
     "ts-node": "^8.4.1",
+    "tsconfig-paths": "^3.9.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4"
   }

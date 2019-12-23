@@ -3,3 +3,7 @@ extends ./layouts/main.pug
 block body
   div.content
     p Hello World!
+    p Here you have some doggos:
+    ul
+      each doggo in doggos
+        li [#{doggo.id}] #{doggo.name} is a #{doggo.isGoodBoy ? 'GOOD BOY' : 'bad boy :('}

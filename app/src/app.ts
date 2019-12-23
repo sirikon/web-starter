@@ -1,13 +1,14 @@
 import Koa from 'koa';
 
-import errorHandler from './web/middleware/errorHandler';
-import router from './web/middleware/router';
-import serveStatic from './web/middleware/serveStatic';
-import views from './web/middleware/views';
+import config from 'config';
+
+import errorHandler from 'web/middleware/errorHandler';
+import router from 'web/middleware/router';
+import serveStatic from 'web/middleware/serveStatic';
+import views from 'web/middleware/views';
 
 export default () => {
 
-	const port = getPort();
 	const app = new Koa();
 
 	views(app);
@@ -15,16 +16,9 @@ export default () => {
 	router(app);
 	serveStatic(app);
 
-	app.listen(port, '0.0.0.0', () => {
+	app.listen(config.web.port, config.web.host, () => {
 		// tslint:disable-next-line: no-console
-		console.log(`Listening on port ${port}`);
+		console.log(`Listening on port ${config.web.port}`);
 	});
 
 };
-
-function getPort(): number {
-	if (process.env.PORT) {
-		return parseInt(process.env.PORT, 10);
-	}
-	return 3000;
-}
