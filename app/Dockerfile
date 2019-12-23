@@ -38,7 +38,8 @@ RUN npm install --production
 ## Copy files from build image
 COPY --from=build-app /app/out .
 COPY --from=build-app /app/resources ./resources
+COPY --from=build-app /app/tsconfig.json .
 
 ## Run
 ENV WEB_PORT=80
-CMD node src/main.js
+CMD node -r tsconfig-paths/register src/main.js

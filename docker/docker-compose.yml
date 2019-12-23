@@ -1,4 +1,4 @@
-version: '2'
+version: '3.7'
 
 services:
 
@@ -7,16 +7,7 @@ services:
     restart: always
     build:
       context: ../app/
-    environment:
-      NODE_ENV: development
-    ports:
-      - 127.0.0.1:3001:80
 
   db:
     image: postgres:12.1-alpine
     restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12345
-    ports:
-      - 127.0.0.1:5432:5432
