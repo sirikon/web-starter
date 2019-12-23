@@ -1,5 +1,5 @@
 import { IDoggo } from 'application/models';
-import { usingClient } from './dbClient';
+import { usingClient } from 'infrastructure/database/postgres';
 
 export async function getDoggos(): Promise<IDoggo[]> {
 	const result = await usingClient(async (db) => {
