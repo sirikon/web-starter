@@ -1,6 +1,6 @@
 import { Gratin, Postgres } from 'gratin';
 import { join } from 'path';
-import waitOn from 'wait-on';
+import waitPort from 'wait-port';
 
 import { JobContext } from 'application/models';
 import config from 'config';
@@ -27,10 +27,7 @@ async function waitDatabaseToBeAvailable(): Promise<void> {
 	const host = config.postgres.host;
 	const port = config.postgres.port;
 	logger.info('Waiting for database to be available', { host, port });
-	await waitOn({
-		resources: [`tcp:${host}:${port}`],
-		timeout: 30000,
-	});
+	await waitPort({ host, port, timeout: 30000, output: 'silent' });
 	logger.info('Database available', { host, port });
 }
 
