@@ -1,6 +1,6 @@
 # Build image
-FROM node:12-alpine AS build-app
-RUN apk add --update --no-cache bash
+FROM alpine:3.11 AS build-app
+RUN apk add --update --no-cache nodejs~12 npm~12 bash
 WORKDIR /app
 
 ## Development dependencies
