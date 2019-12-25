@@ -1,8 +1,7 @@
 import Koa, { BaseContext } from 'koa';
 import KoaRouter from 'koa-router';
-import { container, InjectionToken } from 'tsyringe';
+import { InjectionToken } from 'tsyringe';
 
-import { JobContext } from 'application/models';
 import HomeController from 'web/controllers/homeController';
 
 export default function router(app: Koa) {
