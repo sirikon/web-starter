@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { container } from 'tsyringe';
 
-import app from 'app';
 import { migrate } from 'migrator';
+import app from 'web/app';
 
 import { JobContext } from 'application/models';
 import Logger from 'logging/logger';

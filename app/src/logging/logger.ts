@@ -1,5 +1,7 @@
 import { JobContext } from 'application/models';
+import { MESSAGE } from 'triple-beam';
 import { injectable } from 'tsyringe';
+import c from 'ansi-colors';
 import winston from 'winston';
 
 @injectable()
@@ -33,8 +35,40 @@ function createLogger(jobCtx: JobContext): winston.Logger {
 			new winston.transports.Console({
 				format: winston.format.combine(
 					winston.format.timestamp(),
-					winston.format.simple()),
+					customFormat()),
 			}),
 		],
 	});
+}
+
+const customFormat = winston.format((info) => {
+	const metadata = Object.assign({}, info, {
+		level: undefined,
+		message: undefined,
+		splat: undefined,
+	});
+
+	let message = info.message;
+	const level = info.level;
+
+	switch (level) {
+		case 'warn': message = c.redBright(message); break;
+		case 'error': message = c.bold.red(message); break;
+	}
+
+	info[MESSAGE] = `${message} ${c.grey(stringifyMetadata(metadata))}`;
+	return info;
+});
+
+function stringifyMetadata(metadata: any) {
+	const parts = Object.keys(metadata)
+		.map((k) => {
+			return { k, v: metadata[k] };
+		})
+		.filter(({ k, v }) => !!v)
+		.map(({ k, v }) => {
+			return `${k}=${v.toString()}`;
+		})
+		.join(' ');
+	return `[${parts}]`;
 }

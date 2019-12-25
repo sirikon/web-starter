@@ -14,6 +14,9 @@ import views from 'web/middleware/views';
 
 export default () => {
 
+	const host = config.web.host;
+	const port = config.web.port;
+
 	const app = new Koa();
 	const logger = getLogger();
 
@@ -24,17 +27,14 @@ export default () => {
 	router(app);
 	serveStatic(app);
 
-	app.listen(config.web.port, config.web.host, () => {
-		logger.info('Web server started', {
-			host: config.web.host,
-			port: config.web.port,
-		});
+	app.listen(port, host, () => {
+		logger.info('Web server started', { host, port });
 	});
 
 };
 
 function getLogger(): Logger {
 	const childContainer = container.createChildContainer();
-	childContainer.register(JobContext, { useValue: new JobContext('start') });
+	childContainer.register(JobContext, { useValue: new JobContext('web-start') });
 	return childContainer.resolve(Logger);
 }
