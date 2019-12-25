@@ -1,7 +1,7 @@
+import c from 'ansi-colors';
 import { JobContext } from 'application/models';
 import { MESSAGE } from 'triple-beam';
 import { injectable } from 'tsyringe';
-import c from 'ansi-colors';
 import winston from 'winston';
 
 @injectable()
