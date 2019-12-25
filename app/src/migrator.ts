@@ -3,6 +3,7 @@ import { join } from 'path';
 import waitOn from 'wait-on';
 
 import config from 'config';
+import logger from 'logging/logger';
 
 export async function migrate(): Promise<void> {
 	await waitDatabaseToBeAvailable();
@@ -20,8 +21,12 @@ export async function migrate(): Promise<void> {
 }
 
 async function waitDatabaseToBeAvailable(): Promise<void> {
-	return await waitOn({
-		resources: [`tcp:${config.postgres.host}:${config.postgres.port}`],
+	const host = config.postgres.host;
+	const port = config.postgres.port;
+	logger.info('Waiting for database to be available', { host, port });
+	await waitOn({
+		resources: [`tcp:${host}:${port}`],
 		timeout: 30000,
 	});
+	logger.info('Database available', { host, port });
 }

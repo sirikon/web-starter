@@ -29,7 +29,8 @@
     "pg": "^7.15.1",
     "pug": "^2.0.4",
     "tsconfig-paths": "^3.9.0",
-    "wait-on": "^3.3.0"
+    "wait-on": "^3.3.0",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@types/koa": "^2.0.51",

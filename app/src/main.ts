@@ -1,19 +1,19 @@
 import app from 'app';
 import { migrate } from 'migrator';
 
+import logger from 'logging/logger';
+
 async function main() {
 	await migrate();
 	app();
 }
 
-main().then(() => { /**/ }, (err) => {
-	// tslint:disable-next-line: no-console
-	console.log(err);
+main().then(() => { /**/ }, (error) => {
+	logger.error('Unexpected error', { error });
 	process.exit(1);
 });
 
 process.on('SIGTERM', () => {
-	// tslint:disable-next-line: no-console
-	console.log('SIGTERM detected. Shutting down.');
-	process.exit();
+	logger.warn('SIGTERM detected. Shutting down.');
+	process.exit(0);
 });
