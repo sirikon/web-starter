@@ -23,10 +23,10 @@ export async function migrate(): Promise<void> {
 async function waitDatabaseToBeAvailable(): Promise<void> {
 	const host = config.postgres.host;
 	const port = config.postgres.port;
-	logger.info('Waiting for database to be available', { host, port });
+	// logger.info('Waiting for database to be available', { host, port });
 	await waitOn({
 		resources: [`tcp:${host}:${port}`],
 		timeout: 30000,
 	});
-	logger.info('Database available', { host, port });
+	// logger.info('Database available', { host, port });
 }

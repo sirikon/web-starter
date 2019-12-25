@@ -9,7 +9,9 @@
 		"typeRoots": [
 			"./typings"
 		],
-		"baseUrl": "./src"
+		"baseUrl": "./src",
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true
 	},
 	"exclude": [
 		"node_modules"

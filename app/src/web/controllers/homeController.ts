@@ -1,8 +1,18 @@
+import DoggoStore from 'infrastructure/services/doggoStore';
 import { BaseContext } from 'koa';
+import { injectable } from 'tsyringe';
 
-import { getDoggos } from 'infrastructure/services/doggoStore';
+import Logger from 'logging/logger';
 
-export default async function homeController(ctx: BaseContext) {
-	const doggos = await getDoggos();
-	await ctx.render('home', { doggos });
+@injectable()
+export default class HomeController {
+	constructor(
+		private logger: Logger,
+		private doggoStore: DoggoStore) { }
+
+	public async handle(ctx: BaseContext) {
+		const doggos = await this.doggoStore.getDoggos();
+		this.logger.info('Many doggos!');
+		await ctx.render('home', { doggos });
+	}
 }

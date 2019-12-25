@@ -1,9 +1,10 @@
 import Koa from 'koa';
-import measure from 'logging/measure';
+import Measurer from 'logging/measurer';
 
 export default function logging(app: Koa) {
-	app.use(async (_, next) => {
-		await measure('http request', async () => {
+	app.use(async (ctx, next) => {
+		const m = ctx.ioc.resolve(Measurer);
+		await m.measure('http request', async () => {
 			await next();
 		});
 	});
