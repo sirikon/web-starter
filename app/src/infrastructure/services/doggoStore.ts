@@ -10,11 +10,9 @@ export default class DoggoStore {
 		private m: Measurer) { }
 
 	public async getDoggos(): Promise<IDoggo[]> {
-		const result = await this.m.measure('select all doggos', async () => {
-			return await usingClient(async (db) => {
-				return db.query(`SELECT * FROM doggo ORDER BY id`);
-			});
-		});
+		const result = await this.m.measure('select all doggos', async () =>
+			await usingClient(async (db) =>
+				await db.query(`SELECT * FROM doggo ORDER BY id`)));
 
 		return result.rows.map((row) => {
 			return {
